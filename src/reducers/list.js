@@ -4,6 +4,7 @@ const initialState = {
   loading: false,
   data: [],
   errorMSG: '',
+  count: 0,
 };
 
 const listReducer = (state = initialState, action) => {
@@ -12,7 +13,7 @@ const listReducer = (state = initialState, action) => {
       return { ...state, loading: true, errorMSG: '' };
     case LIST_SUCCESS:
       return {
-        ...state, loading: false, data: action.payload, errorMSG: '',
+        ...state, loading: false, data: action.payload.results, count: action.payload.count, errorMSG: '',
       };
     case LIST_FAIL:
       return {

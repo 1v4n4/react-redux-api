@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getList } from '../actions';
 
 const PokemonList = () => {
@@ -17,8 +18,14 @@ const PokemonList = () => {
   const ShowData = () => {
     if (list.data !== []) {
       console.log(list.data);
-      return <p className="show-data-msg">Have data</p>;
+      return (list.data.map((item) => (
+        <div key={item.name}>
+          <p>{item.name}</p>
+          <Link to={`/pokemon/${item.name}`}>View pokemon</Link>
+        </div>
+      )));
     }
+
     if (list.loading) {
       console.log(list.data);
       return <p className="show-data-msg">Loading...</p>;

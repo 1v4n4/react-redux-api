@@ -20,9 +20,33 @@ const Pokemon = (props) => {
 
 
   const ShowData = () => {
+    const data = pokemonState.data[name];
+
     if (pokemonState.data[name]) {
-      return <p className="show-data-msg">Have data</p>;
-    }
+      return (<div>
+  <h3>base_experience: {data.base_experience}</h3>
+  <h3>Sprites</h3>
+  <img src={data.sprites.back_default} alt=""/>
+  <img src={data.sprites.back_female} alt=""/>
+  <img src={data.sprites.back_shiny} alt=""/>
+  <img src={data.sprites.back_shiny_female} alt=""/>
+  <img src={data.sprites.front_default} alt=""/>
+  <img src={data.sprites.front_female} alt=""/>
+  <h3>Stats</h3>
+  {data.stats.map(item => {
+    return (
+    <p>{item.stat.name} {item.base_stat}</p>)
+
+  }
+  )}
+  <h3>Abilites</h3>
+  {data.abilities.map(item => {
+    return <p>{item.ability.name}</p>
+  })
+  }
+  </div>
+  )
+  }
 
     if (pokemonState.loading) {
       console.log(pokemonState.data);

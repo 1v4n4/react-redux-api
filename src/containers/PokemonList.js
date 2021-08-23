@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import ReactPaginate from 'react-paginate';
 import { getList } from '../actions';
+import Search from '../components/Search';
 
 const PokemonList = () => {
   const dispatch = useDispatch();
@@ -16,6 +18,11 @@ const PokemonList = () => {
   }, []);
 
   const ShowData = () => {
+    if (list.loading) {
+      console.log(list.data);
+      return <p className="show-data-msg">Loading...</p>;
+    }
+
     if (list.data !== []) {
       console.log(list.data);
       return (list.data.map((item) => (
@@ -26,10 +33,6 @@ const PokemonList = () => {
       )));
     }
 
-    if (list.loading) {
-      console.log(list.data);
-      return <p className="show-data-msg">Loading...</p>;
-    }
     if (list.errorMSG !== '') {
       console.log(list.data);
       return <p className="show-data-msg">{list.errorMSG}</p>;
@@ -39,8 +42,18 @@ const PokemonList = () => {
 
   return (
     <div className="pokemon-list">
+      <Search />
       <h1>Pokemon list</h1>
       <h3>{ShowData()}</h3>
+      { (list.data !== []) && (
+
+      <ReactPaginate
+        pageCount={Math.ceil(list.count / 15)}
+        pageRangeDisplayed={2}
+        marginPagesDisplayed={1}
+        onPageChange={(data) => console.log('ej', data.selected)}
+      />
+      )}
     </div>
   );
 };

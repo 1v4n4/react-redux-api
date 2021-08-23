@@ -51,7 +51,8 @@ const PokemonList = () => {
         pageCount={Math.ceil(list.count / 15)}
         pageRangeDisplayed={2}
         marginPagesDisplayed={1}
-        onPageChange={(data) => console.log('ej', data.selected)}
+        onPageChange={(data) => FetchData(data.selected + 1)}
+        containerClassName="pagination"
       />
       )}
     </div>

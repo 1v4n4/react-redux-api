@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# React-Redux-API practise
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is React-Redux and API app, fully functional, but completely unstyled.
 
 ## Available Scripts
 
